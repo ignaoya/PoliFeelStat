@@ -9,6 +9,15 @@ from analyzer import Analyzer
 from twython import Twython
 from twython import TwythonAuthError, TwythonError, TwythonRateLimitError
 from termcolor import colored
+import sys
+import plotly
+import socket
+import html
+
+from analyzer import Analyzer
+from twython import Twython
+from twython import TwythonAuthError, TwythonError, TwythonRateLimitError
+from termcolor import colored
 
 def main():
     
@@ -51,7 +60,8 @@ def get_user_timeline(screen_name, count=50):
     # https://dev.twitter.com/rest/reference/get/statuses/user_timeline
     # https://github.com/ryanmcgrath/twython/blob/master/twython/endpoints.py
     try:
-        twitter = Twython(os.environ.get("API_KEY"), os.environ.get("API_SECRET"))
+        #twitter = Twython(os.environ.get("API_KEY"), os.environ.get("API_SECRET"))
+        twitter = Twython("", "")
         user = twitter.lookup_user(screen_name=screen_name)
         if user[0]["protected"]:
             return None
