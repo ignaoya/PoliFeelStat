@@ -54,8 +54,8 @@ def get_user_timeline(screen_name, count=200):
     # https://github.com/ryanmcgrath/twython/blob/master/twython/endpoints.py
     try:
         #twitter = Twython(os.environ.get("API_KEY"), os.environ.get("API_SECRET"))
-        APP_KEY = 'BsDZInqvF7FH9NKviLN2U902n'
-        APP_SECRET = 'CHasQhKTZGt8XHexgwYceQog99jwgdVYj7sHEyYKeR8kWO8yNU'
+        APP_KEY = ''
+        APP_SECRET = ''
 
         twitter = Twython(APP_KEY, APP_SECRET)
         user = twitter.lookup_user(screen_name=screen_name)
