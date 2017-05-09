@@ -3,9 +3,10 @@ from bs4 import BeautifulSoup
 
 html = urlopen("https://www.yahoo.com/news/world/")
 bsObj = BeautifulSoup(html.read())
-with open('newslinks.txt', 'w') as f:
+with open('newslinks2.txt', 'w') as f:
     for link in bsObj.findAll("a"):
-        if 'href' in link.attrs:
+        if link.attrs['href'].endswith('html'): ##gets us links ending in 'html', which are the real news links
             f.write(link.attrs['href'])
             f.write('\n')
 f.closed
+

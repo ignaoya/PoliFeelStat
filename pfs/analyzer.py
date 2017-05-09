@@ -26,11 +26,11 @@ class Analyzer():
 
     def analyze(self, text):
         """Analyze text for sentiment, returning its score."""
-        tokenizer = nltk.tokenize.TweetTokenizer()
-        tokens = tokenizer.tokenize(text)
+       # tokenizer = nltk.tokenize.TweetTokenizer()
+        #tokens = tokenizer.tokenize(text)
         
         score = 0
-        for token in tokens:
+        for token in text:
             
             if token in self.negatives:
                 score += -1
