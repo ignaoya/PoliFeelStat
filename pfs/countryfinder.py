@@ -10,7 +10,7 @@ django.setup()
 def find_country(textfile):
     with codecs.open(textfile, "r", encodings="utf-8", errors='ignore') as f:
         text = f.read()
-        countryList = [c for c in countries if c['name'] in text]
+        countryList = [c['name'] for c in countries if c['name'] in text]
         f.closed
         return countryList
 
