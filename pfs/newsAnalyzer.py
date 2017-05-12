@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from nltk.tokenize import word_tokenize
 import sys, os
 from pfs.analyzer import Analyzer
+from pfs.countryfinder import find_country
 
 # #imports from Tango-django page 55 to create ORM database
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'polifeelstat.settings')
@@ -23,7 +24,7 @@ def score_arts():
     analyzer = Analyzer(positives, negatives)
 
     for news_link in lines:
-        url = 'https://www.yahoo.com' + news_link
+        url = 'https://yahoo.com' + news_link
         html = urlopen(url)
         bsObj = BeautifulSoup(html)
         pureText = bsObj.findAll("p", {"type":"text"})
@@ -45,9 +46,10 @@ def score_arts():
         #analyze tokenized article
         score = analyzer.analyze(token)
         length_article = len(token)
+        countries = find_country("text.txt")
 
         db_sql = []
-        db_article = {"url": url, "score": score, "country": 0, "length": length_article}
+        db_article = {"url": url, "score": score, "country": countries, "length": length_article}
         print(url)
         print(score)
         db_sql.append(db_article)
@@ -58,7 +60,8 @@ def add_Article(art):
         countryId=0,
         urlId=art["url"],
         feels=art["score"],
-        length=art["length"])
+        length=art["length"],
+        country=art["country"])
 
 score_arts()
 
