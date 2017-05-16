@@ -46,7 +46,7 @@ def score_arts():
         #analyze tokenized article
         score = analyzer.analyze(token)
         length_article = len(token)
-        countries = find_country("text.txt")
+        countries = ' '.join(find_country("text.txt"))
         date = bsObj.time.attrs['datetime'][:10] #finds datetime attribute and prints first 10 chars (only date, no time)
 
         db_sql = []
