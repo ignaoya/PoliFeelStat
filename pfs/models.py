@@ -4,7 +4,7 @@ class Article(models.Model):
     id = models.IntegerField(unique=True, primary_key=True, auto_created=True)
     urlId = models.URLField()
     feels = models.IntegerField()
-    date = models.DateField
+    date = models.DateField(blank=True)
     length = models.IntegerField()
     country = models.TextField(blank=True)
 
