@@ -1,5 +1,5 @@
 from django.contrib import admin
-from pfs.models import Article
+from pfs.models import Article, Country
 
 
 
@@ -16,3 +16,4 @@ class ArticleModelAdmin(admin.ModelAdmin):
 # Register your models here.
 
 admin.site.register(Article)
+admin.site.register(Country)

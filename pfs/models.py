@@ -6,7 +6,13 @@ class Article(models.Model):
     feels = models.IntegerField()
     date = models.DateField(blank=True)
     length = models.IntegerField()
-    country = models.TextField(blank=True)
 
     def __str__(self):
         return self.urlId
+
+class Country(models.Model):
+    country = models.TextField(blank = True)
+    article = models.ManyToManyField(Article)
+
+    def __str__(self):
+        return self.country

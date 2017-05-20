@@ -10,7 +10,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'polifeelstat.settings')
 
 import django
 django.setup()
-from pfs.models import Article
+from pfs.models import Article, Country
 
 
 def score_arts():
@@ -46,24 +46,33 @@ def score_arts():
         #analyze tokenized article
         score = analyzer.analyze(token)
         length_article = len(token)
-        countries = ' '.join(find_country("text.txt"))
+        countries = find_country("text.txt")
         date = bsObj.time.attrs['datetime'][:10] #finds datetime attribute and prints first 10 chars (only date, no time)
 
         db_sql = []
-        db_article = {"url": url, "score": score, "country": countries, "length": length_article, "date":date}
+        db_article = {"url": url, "score": score, "length": length_article, "date":date}
         print(url)
         print(score)
         db_sql.append(db_article)
-        add_Article(db_article)
+        add_Article(db_article, countries)
 
-def add_Article(art):
+
+def add_Article(art, country_list):
     p, created = Article.objects.get_or_create(
         #countryId=0,
         urlId=art["url"],
         feels=art["score"],
         length=art["length"],
-        country=art["country"],
         date=art["date"])
+
+    add_Country(country_list)
+
+def add_Country(country_list):
+    for i in country_list:
+        p, created = Country.objects.get_or_create(
+            country=i,
+
+    )
 
 score_arts()
 
