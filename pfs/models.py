@@ -11,8 +11,9 @@ class Article(models.Model):
         return self.urlId
 
 class Country(models.Model):
+    id = models.IntegerField(unique=True, primary_key=True, auto_created=True)
     country = models.TextField(blank = True)
-    article = models.ManyToManyField(Article)
+    article = models.ForeignKey(Article, default=0)
 
     def __str__(self):
         return self.country

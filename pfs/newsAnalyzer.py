@@ -59,18 +59,18 @@ def score_arts():
 
 def add_Article(art, country_list):
     p, created = Article.objects.get_or_create(
-        #countryId=0,
         urlId=art["url"],
         feels=art["score"],
         length=art["length"],
         date=art["date"])
 
-    add_Country(country_list)
+    add_Country(p, country_list)
 
-def add_Country(country_list):
+def add_Country(Article, country_list):
     for i in country_list:
         p, created = Country.objects.get_or_create(
             country=i,
+            article=Article
 
     )
 
