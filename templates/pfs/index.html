@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PFS</title>
+    <link href="{% static "css/styles.css" %}" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <div id="page">
+        <div id="logo">
+            <p>
+                <img src="{% static "images/logo.gif" %}" alt="Political Feeling Stats" />
+            </p>
+        </div>
+        <ul id="navigation">
+            <li><a href="/pfs/about/">About</a>
+            <li><a href="/pfs/stats1/">Stats</a>
+        </ul>
+        <p>
+            <img src="{% static 'images/analysis.jpg' %}" alt="Picture of analysis" />
+        </p>
+        <p>Get ready to see some stats!</p>
+    </div>
+</body>
+</html>
