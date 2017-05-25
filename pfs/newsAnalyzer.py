@@ -5,6 +5,7 @@ import sys, os
 from pfs.analyzer import Analyzer
 from pfs.countryfinder import find_country
 
+
 # #imports from Tango-django page 55 to create ORM database
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'polifeelstat.settings')
 
@@ -39,18 +40,21 @@ def score_arts():
             text = f.read()
             token = word_tokenize(text)
         f.closed
-
+        
         ##To get published date use following tags(extracted from article source):
         ##<time class="date Fz(11px) D(ib) Mb(4px)" datetime="2017-05-04T17:08:13.000Z" itemprop="datePublished" data-reactid="15">May 4, 2017</time>
 
         #analyze tokenized article
         score = analyzer.analyze(token)
         length_article = len(token)
+
         countries = find_country("text.txt")
         date = bsObj.time.attrs['datetime'][:10] #finds datetime attribute and prints first 10 chars (only date, no time)
 
         db_sql = []
         db_article = {"url": url, "score": score, "length": length_article, "date":date}
+
+
         print(url)
         print(score)
         db_sql.append(db_article)

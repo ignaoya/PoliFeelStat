@@ -1,3 +1,4 @@
+
 from pfs.countryinfo import countries
 import codecs
 import os
@@ -16,3 +17,6 @@ def find_country(textfile):
 
 if __name__ == '__main__':
     print("This module works with newsAnalyser.py")
+
+
+
