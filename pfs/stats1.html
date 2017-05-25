@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stats1</title>
+</head>
+<body>
+    {% if articles %}
+        <ul> Articles found today
+
+                <li>
+
+                    {{countries.0}} {{countries.1}} {{countries.2}} {{countries.3}} {{countries.4}} have been mentioned
+                    today with a score of {{articles.feels}}<br/>
+                    ID of the article: {{ articles.id}} <br/>
+                    Length of the article: {{articles.length}} words. <br/>
+                    Link to the article: <a href="{{articles}}">click me, asshole!</a><br/>
+                </li>
+
+        </ul>
+    {% endif %}
+</body>
+</html>
