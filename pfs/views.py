@@ -35,11 +35,9 @@ def stats2(request):
     avg_length = 0
     for i in countries:
         art = Article.objects.get(urlId = i.article)
-        print(art.feels)
         articles.append(art)
         average += Article.objects.get(urlId = i.article).feels
         avg_length += Article.objects.get(urlId = i.article).length
-        print(average)
     average /= mentions
     average = str(round(average, 2))
     avg_length /= mentions
