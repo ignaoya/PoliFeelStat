@@ -5,23 +5,22 @@
     <title>Stats2</title>
 </head>
 <body>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit" />
+    </form>
     {% if countries %}
         You've searched for {{ search_term }}:<br/>
 
         We have found {{ mentions }} mentions of {{search_term}}. The latest one is from {{latest}}
+
         {% for i in articles %}
             <li><a href="{{i.urlId}}">Link to page</a> (Score of {{ i.feels }} in {{ i.length}} words)</li>
         {% endfor %}<br/>
+
         The average score of the {{ mentions }} articles is {{ average }},
         and the average length is {{ avg_length}} words.<br/>
-
-
-
-
-
-
-
-
 
     {% endif %}
 </body>
