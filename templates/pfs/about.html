@@ -4,10 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <title>About</title>
+    <link href="{% static "css/styles.css" %}" type="text/css" rel="stylesheet" />
 </head>
 <body>
-    <img src="{% static "images/colors.jpg" %}" alt="Picture of colors" />
-    <div>This page has been put together by XOyarz and Nachus Nachus</div>
-    <a href="/pfs/">Back to Index</a>
+    <div id="page">
+        <div id="logo">
+            <p>
+                <img src="{% static "images/logo.gif" %}" alt="Political Feeling Stats" />
+            </p>
+        </div>
+        <ul id="navigation">
+            <li><a href="/pfs/">Index</a>
+            <li><a href="/pfs/stats1/">Stats</a>
+        </ul>
+        <p>
+            <img class="profile" src="{% static "images/xavi.jpg" %}" alt="Xavier Oyarzabal" width="200" height="200"/>
+            <img class="profile" src="{% static "images/igna.jpg" %}" alt="Ignacio Oyarzabal" width="200" height="200"/>
+        </p>
+        <p>This page has been put together by Xavier Oyarzabal and his brother Ignacio(the one with the hat).</p>
+        <p>Its purpose is to analyze sentiment in US online newspapers regarding foreign countries. If WWIII
+           is about to start, we'll let you know.</p>
+    </div>
 </body>
 </html>

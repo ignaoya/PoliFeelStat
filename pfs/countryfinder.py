@@ -1,8 +1,10 @@
-
-from pfs.countryinfo import countries
+from countryinfo import countries
 import codecs
+import os, sys
+
 import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'polifeelstat.settings')
+os.environ['DJANGO_SETTINGS_MODULE'] = 'polifeelstat.settings'
+#os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'polifeelstat.settings')
 
 import django
 django.setup()
@@ -17,6 +19,3 @@ def find_country(textfile):
 
 if __name__ == '__main__':
     print("This module works with newsAnalyser.py")
-
-
-

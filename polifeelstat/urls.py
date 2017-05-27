@@ -19,8 +19,10 @@ from django.contrib import admin
 from django.conf.urls import include
 from pfs import views #ignore the red, it works
 
+admin.autodiscover()
+
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^pfs/', include('pfs.urls')), #this maps any URLs starting with rango/ to be handled by the pfs app
+    url(r'^pfs/', include('pfs.urls')), #this maps any URLs starting with pfs/ to be handled by the pfs app
     url(r'^admin/', admin.site.urls),
 ]
