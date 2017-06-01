@@ -7,6 +7,7 @@ class ArticleModelAdmin(admin.ModelAdmin):
     fields = ['id', 'feels', 'urlId']
 
     list_display = ('id', 'feels', 'urlId')
+    search_fields = ('id', 'urlId',)
 
     class Meta:
         model = Article
@@ -15,6 +16,7 @@ class CountryModelAdmin(admin.ModelAdmin):
     fields = ['id', 'country', 'article']
 
     list_display = ('id', 'country', 'article')
+    search_fields = ('country',)
 
     class Meta:
         model = Country

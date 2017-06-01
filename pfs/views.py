@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from pfs.models import Article, Country
+from pfs.forms import CountryForm
 
 
 # Create your views here.
@@ -24,26 +25,37 @@ def stats1(request):
 
 def stats2(request):
 
-    search_term = "Argentina"
-    countries = Country.objects.filter(country = search_term)
-    mentions = len(countries)
+    if request.method == 'POST':
+        form = CountryForm(request.POST)
+        if form.is_valid():
 
-    latest = Article.objects.get(urlId = countries[mentions - 1].article).date
+            data = form.cleaned_data
+            search_term = data['search_term']
+            #search_term = form
+            countries = Country.objects.filter(country = search_term)
+            mentions = len(countries)
 
-    articles = []
-    average = 0
-    avg_length = 0
-    for i in countries:
-        art = Article.objects.get(urlId = i.article)
-        articles.append(art)
-        average += Article.objects.get(urlId = i.article).feels
-        avg_length += Article.objects.get(urlId = i.article).length
-    average /= mentions
-    average = str(round(average, 2))
-    avg_length /= mentions
-    avg_length = str(round(avg_length, 2))
+            latest = Article.objects.get(urlId = countries[mentions -1].article).date
+            #latest = Article.objects.get(urlId=countries[0].article).date
+
+            articles = []
+            average = 0
+            avg_length = 0
+            for i in countries:
+                art = Article.objects.get(urlId = i.article)
+                articles.append(art)
+                average += Article.objects.get(urlId = i.article).feels
+                avg_length += Article.objects.get(urlId = i.article).length
+            average /= mentions
+            average = str(round(average, 2))
+            avg_length /= mentions
+            avg_length = str(round(avg_length, 2))
 
 
-    context_dict = {'countries':countries, 'articles':articles, 'search_term':search_term,
-                    'mentions':mentions, 'latest':latest, 'average':average, 'avg_length':avg_length}
-    return render(request, 'pfs/stats2.html', context=context_dict)
+            context_dict = {'countries':countries, 'articles':articles, 'search_term':search_term,
+                            'mentions':mentions, 'latest':latest, 'average':average, 'avg_length':avg_length}
+            return render(request, 'pfs/stats2.html',  context=context_dict, )
+
+    else:
+        form = CountryForm()
+    return render(request, 'pfs/stats2.html', {'form': form})
